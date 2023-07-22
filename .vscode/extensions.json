@@ -1,3 +1,3 @@
 {
-  "recommendations": ["esbenp.prettier-vscode", "dbaeumer.vscode-eslint", "amandeepmittal.pug", "syler.sass-indented", "slevesque.shader"]
+  "recommendations": ["esbenp.prettier-vscode", "dbaeumer.vscode-eslint", "amandeepmittal.pug", "syler.sass-indented", "slevesque.shader", "EditorConfig.EditorConfig"]
 }
