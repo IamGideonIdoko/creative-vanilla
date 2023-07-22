@@ -5,7 +5,8 @@ import methodOverride from 'method-override';
 import logger from 'morgan';
 import { fileURLToPath } from 'url';
 import { access } from 'fs';
-
+import UA from './middlewares/ua.middleware';
+// Load env vars
 config();
 
 const filename = fileURLToPath(import.meta.url);
@@ -20,6 +21,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride());
+app.use(UA);
 
 access(publicDir, (err) => {
   if (err) throw new Error('No public directory!');
