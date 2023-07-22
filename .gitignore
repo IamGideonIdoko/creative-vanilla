@@ -128,3 +128,13 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# output
+build/
+
+# Client public
+src/client/public/*
+
+# Explicitly exclude files from `src/client/public` dir
+!src/client/public/.gitkeep
+
