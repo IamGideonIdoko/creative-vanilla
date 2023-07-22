@@ -6,7 +6,7 @@ import type { Configuration } from 'webpack';
 export default merge<Configuration>(config, {
   mode: 'production',
   output: {
-    path: join(dirname(filename), 'public')
+    path: join(dirname(filename), 'build/client/public'),
   },
-  plugins: []
+  plugins: [],
 });

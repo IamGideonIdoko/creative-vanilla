@@ -6,6 +6,7 @@ import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import ESLintPlugin from 'eslint-webpack-plugin';
 import TerserPlugin from 'terser-webpack-plugin';
 import { fileURLToPath } from 'url';
+import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 
 export const filename = fileURLToPath(import.meta.url);
 
@@ -21,23 +22,27 @@ export default {
     },
   },
   plugins: [
+    // Run TypeScript type checker on a separate process.
+    new ForkTsCheckerWebpackPlugin({
+      async: false,
+    }),
     // some plugins are built into webpack
     new webpack.DefinePlugin({
       // allows for creation of global constants
-      __DEV__: process.env.NODE_ENV === 'dev',
+      __DEV__: process.env.NODE_ENV === 'development',
     }),
     new webpack.ProvidePlugin({}), // use modules without having to use import/require
     new CopyWebpackPlugin({
       patterns: [
         {
           from: getClientWebpackPath('shared'), // copy from shared to the public dir
-          to: ''
-        }
-      ]
+          to: '',
+        },
+      ],
     }),
     new MiniCssExtractPlugin({
       filename: '[name].css',
-      chunkFilename: '[id].css'
+      chunkFilename: '[id].css',
     }),
     // TODO: Add image minifier plugin/loader
     // package: image-minimizer-webpack-plugin
@@ -53,8 +58,8 @@ export default {
       {
         test: /\.js$/,
         use: {
-          loader: 'babel-loader'
-        }
+          loader: 'babel-loader',
+        },
       },
       {
         test: /\.scss$/,
@@ -63,18 +68,18 @@ export default {
             loader: MiniCssExtractPlugin.loader,
             options: {
               publicPath: '',
-            }
+            },
           },
           {
-            loader: 'css-loader'
+            loader: 'css-loader',
           },
           {
-            loader: 'postcss-loader'
+            loader: 'postcss-loader',
           },
           {
-            loader: 'sass-loader'
-          }
-        ]
+            loader: 'sass-loader',
+          },
+        ],
       },
       {
         test: /\.(jpe?g|png|gif|svg|woff2?|fnt|webp)$/,
@@ -83,13 +88,19 @@ export default {
       {
         test: /\.(glsl|frag|vert)$/,
         loader: 'asset/source',
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       {
         test: /\.(glsl|frag|vert)$/,
         loader: 'glslify-loader',
-        exclude: /node_modules/
-      }
-    ]
-  }
+        exclude: /node_modules/,
+      },
+    ],
+  },
+  watchOptions: {
+    // for some systems, watching many files can result in a lot of CPU or memory usage
+    // https://webpack.js.org/configuration/watch/#watchoptionsignored
+    // don't use this pattern, if you want to use this if it's monorepo with linked packages
+    ignored: /node_modules/,
+  },
 } satisfies Configuration;

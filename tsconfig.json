@@ -1,13 +1,13 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
@@ -17,13 +17,12 @@
     "plugins": [],
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "outDir": "build/server"
   },
-  "include": [
-    "**/*.ts",
-    "./*.js",
-    "./src/**/*.js",
-    "./src/**/*.ts",
-  ],
-  "exclude": ["node_modules", "src/client/public"]
+  "include": ["./*.ts", "./*.js", "./src/**/*.js", "./src/**/*.ts"],
+  "exclude": ["node_modules", "src/client/public"],
+  "ts-node": {
+    "esm": true
+  }
 }

@@ -8,10 +8,10 @@ export default merge<Configuration & DevServerConfiguration>(config, {
   devtool: 'inline-source-map', // Helps when inspecting the HTML
   devServer: {
     devMiddleware: {
-      writeToDisk: true
-    }
+      writeToDisk: true,
+    },
   },
   output: {
-    path: getClientWebpackPath('public')
-  }
+    path: getClientWebpackPath('public'),
+  },
 });
