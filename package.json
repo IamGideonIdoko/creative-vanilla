@@ -55,5 +55,11 @@
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.1",
     "webpack-merge": "^5.9.0"
+  },
+  "engines": {
+    "npm": "please-use-pnpm",
+    "yarn": "please-use-pnpm",
+    "node": "^18.0.0",
+    "pnpm": ">=8.0.0"
   }
 }
