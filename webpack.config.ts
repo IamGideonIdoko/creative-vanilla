@@ -1,16 +1,13 @@
-import { join, dirname } from 'path';
+import { join } from 'path';
 import webpack, { type Configuration } from 'webpack';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import ESLintPlugin from 'eslint-webpack-plugin';
 import TerserPlugin from 'terser-webpack-plugin';
-import { fileURLToPath } from 'url';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 
-export const filename = fileURLToPath(import.meta.url);
-
-export const getClientWebpackPath = (path: string) => join(dirname(filename), `src/client/${path}`);
+export const getClientWebpackPath = (path: string) => join(__dirname, `src/client/${path}`);
 
 export default {
   entry: [getClientWebpackPath('index.js'), getClientWebpackPath('styles/index.scss')],

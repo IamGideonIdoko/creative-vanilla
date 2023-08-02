@@ -1,12 +1,12 @@
-import { join, dirname } from 'path';
+import { join } from 'path';
 import { merge } from 'webpack-merge';
-import config, { filename } from './webpack.config';
+import config from './webpack.config';
 import type { Configuration } from 'webpack';
 
 export default merge<Configuration>(config, {
   mode: 'production',
   output: {
-    path: join(dirname(filename), 'build/client/public'),
+    path: join(__dirname, 'build/client/public'),
   },
   plugins: [],
 });

@@ -2,10 +2,9 @@ import { config } from 'dotenv';
 // Load env vars
 config();
 import express, { type Application } from 'express';
-import { join, dirname } from 'path';
+import { join } from 'path';
 import methodOverride from 'method-override';
 import morgan from 'morgan';
-import { fileURLToPath } from 'url';
 import { access } from 'fs';
 import { UA, limiter, reqError } from './middlewares';
 import type { Server as HttpServer } from 'http';
@@ -28,12 +27,15 @@ class Server {
     this.app = express();
     // Initialize global middlewares
     this.initGlobalMiddlewares();
+    // Set up client
+    this.setupClient();
     // Initialize routes
     this.initRoutes(controllers);
     // Initialize global error handler
     this.initErrorHandler();
     // Start server
     this.server = this.listen(port);
+    this.server.on('listening', () => console.log(`🚀 Server ready on port ${port}`));
   }
 
   /**
@@ -42,9 +44,7 @@ class Server {
    * @returns Created express server
    */
   private listen(port: number) {
-    this.server = this.app.listen(port, () => console.log(`🚀 Server ready on port ${port}`));
-    this.server.on('listening', () => console.log('lissteing'));
-    return this.server;
+    return this.app.listen(port);
   }
 
   /**
@@ -76,9 +76,8 @@ class Server {
   }
 
   private setupClient() {
-    const filename = fileURLToPath(import.meta.url);
-    const publicDir = join(dirname(filename), '../client/public');
-    const viewsDir = join(dirname(filename), '../client/views');
+    const publicDir = join(__dirname, '../client/public');
+    const viewsDir = join(__dirname, '../client/views');
 
     access(publicDir, (err) => {
       if (err) throw new Error('No public directory!');
