@@ -9,6 +9,6 @@ export const reqError = (): ErrorRequestHandler => {
     console.error(error);
     const message: string = error.message || 'Internal server error, please try again';
     const errorCode = error.errCode;
-    return res.render('error', { errorMessage: message, errorCode });
+    return res.render('pages/error', { errorMessage: message, errorCode });
   };
 };

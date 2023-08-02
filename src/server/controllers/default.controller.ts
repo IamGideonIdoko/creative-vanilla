@@ -28,7 +28,7 @@ export class DefaultController implements Controller {
 
   private notFound(req: Request, res: Response, next: NextFunction) {
     try {
-      return res.render('base');
+      return res.render('pages/notfound');
     } catch (err) {
       next(err);
     }

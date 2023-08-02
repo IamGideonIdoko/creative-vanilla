@@ -1,0 +1,8 @@
+nav.navigation
+  a.navigation__link(href='/') Link
+
+  ul.navigation__list
+    each item in ['one', 'two', 'three']
+      li.navigation__list__item
+        a.navigation__list__link(data-animation='link', href='#')
+          span= item
