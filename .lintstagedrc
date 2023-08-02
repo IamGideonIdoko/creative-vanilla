@@ -1,3 +1,4 @@
 {
-  "src/**/*.(js|jsx|ts|tsx)": "pnpm lint"
+  "**/*.(js|ts)": "pnpm lint",
+  "**/*.pug": "prettier --write \"**/*.pug\"  "
 }
