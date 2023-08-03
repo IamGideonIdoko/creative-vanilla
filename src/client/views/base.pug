@@ -38,7 +38,4 @@ html(class=isDesktop ? 'desktop' : isTablet ? 'tablet' : isPhone ? 'phone' : '',
 
     include ./pages/home.pug
 
-    script.
-      window.ASSETS = JSON.stringify(assets).replace(/<\//g, '<\\/');
-
     script(src='main.js')
