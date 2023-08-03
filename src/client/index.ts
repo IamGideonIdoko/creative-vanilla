@@ -1,8 +1,8 @@
 class Client {
-  private path: string;
+  private pathname: string;
   constructor() {
-    this.path = window.location.pathname;
-    console.log('Client path: ', this.path);
+    this.pathname = window.location.pathname;
+    console.log('Client path: ', this.pathname);
   }
 }
 

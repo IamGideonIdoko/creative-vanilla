@@ -1,6 +1,6 @@
 import { merge } from 'webpack-merge';
 import config, { getClientWebpackPath } from './webpack.config';
-import type { Configuration } from 'webpack';
+import { type Configuration, HotModuleReplacementPlugin } from 'webpack';
 import type { Configuration as DevServerConfiguration } from 'webpack-dev-server';
 
 export default merge<Configuration & DevServerConfiguration>(config, {
@@ -13,5 +13,7 @@ export default merge<Configuration & DevServerConfiguration>(config, {
   },
   output: {
     path: getClientWebpackPath('public'),
+    publicPath: '/',
   },
+  plugins: [new HotModuleReplacementPlugin()],
 });

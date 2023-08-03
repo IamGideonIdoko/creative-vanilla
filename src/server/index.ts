@@ -26,6 +26,8 @@ class Server {
     this.app = express();
     // Set up client
     this.setUpClient();
+    // Set up dev server
+    this.setUpDevServer();
     // Initialize global middlewares
     this.initGlobalMiddlewares();
     // Initialize routes
@@ -34,7 +36,7 @@ class Server {
     this.initErrorHandler();
     // Start server
     this.server = this.listen(port);
-    this.server.on('listening', () => console.log(`🚀 Server ready on port ${port}`));
+    this.server.on('listening', () => console.log(`🚀 Server ready on %j}`, this.server.address()));
   }
 
   /**
@@ -95,6 +97,41 @@ class Server {
    */
   private initErrorHandler() {
     this.app.use(reqError());
+  }
+
+  private setUpDevServer() {
+    if (serverConfig.env.isDev) {
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      const webpack = require('webpack'),
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
+        webpackConfig = require('../../webpack.config.dev'),
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
+        webpackDevMiddleware = require('webpack-dev-middleware'),
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
+        webpackHotMiddleware = require('webpack-hot-middleware');
+
+      // Path for live updates
+      webpackConfig.default.entry.unshift('webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000');
+
+      const compiler = webpack(webpackConfig.default);
+
+      // Attach the dev middleware to the compiler & the server
+      this.app.use(
+        webpackDevMiddleware(compiler, {
+          publicPath: webpackConfig.default.output.publicPath,
+          writeToDisk: true,
+        }),
+      );
+
+      // Attach the hot middleware to the compiler & the server
+      this.app.use(
+        webpackHotMiddleware(compiler, {
+          log: console.log,
+          path: '/__webpack_hmr',
+          heartbeat: 10 * 1000,
+        }),
+      );
+    }
   }
 }
 

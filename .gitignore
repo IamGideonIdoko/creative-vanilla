@@ -138,3 +138,4 @@ src/client/public/*
 # Explicitly exclude files from `src/client/public` dir
 !src/client/public/.gitkeep
 
+.DS_Store
