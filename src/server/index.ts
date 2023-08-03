@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 import { config } from 'dotenv';
 // Load env vars
 config();
@@ -24,10 +25,12 @@ class Server {
   constructor(controllers: Controller[], port: number) {
     // Initialize express app
     this.app = express();
+    // Set up live reload
+    this.setUpLiveReload();
     // Set up client
     this.setUpClient();
     // Set up dev server
-    this.setUpDevServer();
+    this.setUpHMR();
     // Initialize global middlewares
     this.initGlobalMiddlewares();
     // Initialize routes
@@ -64,13 +67,8 @@ class Server {
     }
     this.app.use(
       helmet({
-        contentSecurityPolicy: {
-          directives: {
-            ...helmet.contentSecurityPolicy.getDefaultDirectives(),
-            'script-src': ["'self'", "'unsafe-inline'"], // Required for onclick inline handlers
-            'script-src-attr': ["'self'", "'unsafe-inline'"], // Required for onclick inline handlers
-          },
-        },
+        crossOriginEmbedderPolicy: !serverConfig.env.isDev,
+        contentSecurityPolicy: !serverConfig.env.isDev,
       }),
     );
     this.app.use(limiter());
@@ -99,15 +97,11 @@ class Server {
     this.app.use(reqError());
   }
 
-  private setUpDevServer() {
+  private setUpHMR() {
     if (serverConfig.env.isDev) {
-      // eslint-disable-next-line @typescript-eslint/no-var-requires
       const webpack = require('webpack'),
-        // eslint-disable-next-line @typescript-eslint/no-var-requires
         webpackConfig = require('../../webpack.config.dev'),
-        // eslint-disable-next-line @typescript-eslint/no-var-requires
         webpackDevMiddleware = require('webpack-dev-middleware'),
-        // eslint-disable-next-line @typescript-eslint/no-var-requires
         webpackHotMiddleware = require('webpack-hot-middleware');
 
       // Path for live updates
@@ -131,6 +125,22 @@ class Server {
           heartbeat: 10 * 1000,
         }),
       );
+    }
+  }
+
+  private setUpLiveReload() {
+    if (serverConfig.env.isDev) {
+      const livereload = require('livereload'),
+        connectLiveReload = require('connect-livereload');
+      const liveReloadServer = livereload.createServer();
+      liveReloadServer.watch(join(__dirname, '../client/views'));
+      liveReloadServer.server.once('connection', () => {
+        setTimeout(() => {
+          liveReloadServer.refresh('/');
+        }, 100);
+      });
+
+      this.app.use(connectLiveReload());
     }
   }
 }
