@@ -5,7 +5,6 @@ import express, { type Application } from 'express';
 import { join } from 'path';
 import methodOverride from 'method-override';
 import morgan from 'morgan';
-import { access } from 'fs';
 import { UA, limiter, reqError } from './middlewares';
 import type { Server as HttpServer } from 'http';
 import helmet from 'helmet';
@@ -25,10 +24,10 @@ class Server {
   constructor(controllers: Controller[], port: number) {
     // Initialize express app
     this.app = express();
+    // Set up client
+    this.setUpClient();
     // Initialize global middlewares
     this.initGlobalMiddlewares();
-    // Set up client
-    this.setupClient();
     // Initialize routes
     this.initRoutes(controllers);
     // Initialize global error handler
@@ -75,19 +74,10 @@ class Server {
     this.app.use(limiter());
   }
 
-  private setupClient() {
-    const publicDir = join(__dirname, '../client/public');
-    const viewsDir = join(__dirname, '../client/views');
-
-    access(publicDir, (err) => {
-      if (err) throw new Error('No public directory!');
-      this.app.use(express.static(publicDir));
-    });
-    access(viewsDir, (err) => {
-      if (err) throw new Error('No views directory!');
-      this.app.set('views', viewsDir);
-      this.app.set('view engine', 'pug');
-    });
+  private setUpClient() {
+    this.app.use(express.static(join(__dirname, '../client/public')));
+    this.app.set('views', join(__dirname, '../client/views'));
+    this.app.set('view engine', 'pug');
   }
 
   /**
