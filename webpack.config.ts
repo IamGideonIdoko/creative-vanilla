@@ -10,7 +10,7 @@ import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 export const getClientWebpackPath = (path: string) => join(__dirname, `src/client/${path}`);
 
 export default {
-  entry: [getClientWebpackPath('index.js'), getClientWebpackPath('styles/index.scss')],
+  entry: [getClientWebpackPath('index.ts'), getClientWebpackPath('styles/index.scss')],
   resolve: {
     // configure where webpack looks for modules
     modules: ['node_modules'],
@@ -52,6 +52,11 @@ export default {
   },
   module: {
     rules: [
+      {
+        test: /\.ts?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
       {
         test: /\.js$/,
         use: {

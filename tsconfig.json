@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES2018",
+    "target": "ES5",
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -8,7 +8,7 @@
     "noEmit": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "module": "CommonJS",
+    "module": "ESNext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -18,8 +18,14 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-    "outDir": "build/server"
+    "outDir": "build/server",
+    "noImplicitAny": true
   },
   "include": ["./*.ts", "./*.js", "./src/**/*.js", "./src/**/*.ts"],
-  "exclude": ["node_modules", "src/client/public"]
+  "exclude": ["node_modules", "src/client/public"],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
+  }
 }

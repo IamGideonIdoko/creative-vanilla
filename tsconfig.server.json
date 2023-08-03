@@ -2,7 +2,8 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "isolatedModules": false,
-    "noEmit": false
+    "noEmit": false,
+    "target": "ES2019"
   },
   "include": ["./src/server/**/*.js", "./src/server/**/*.ts"]
 }

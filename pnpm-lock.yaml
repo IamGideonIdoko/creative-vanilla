@@ -163,6 +163,9 @@ devDependencies:
   terser-webpack-plugin:
     specifier: ^5.3.9
     version: 5.3.9(webpack@5.88.2)
+  ts-loader:
+    specifier: ^9.4.4
+    version: 9.4.4(typescript@5.1.6)(webpack@5.88.2)
   ts-node:
     specifier: ^10.9.1
     version: 10.9.1(@types/node@20.4.2)(typescript@5.1.6)
@@ -5976,6 +5979,21 @@ packages:
       typescript: '>=4.2.0'
     dependencies:
       typescript: 5.1.6
+    dev: true
+
+  /ts-loader@9.4.4(typescript@5.1.6)(webpack@5.88.2):
+    resolution: {integrity: sha512-MLukxDHBl8OJ5Dk3y69IsKVFRA/6MwzEqBgh+OXMPB/OD01KQuWPFd1WAQP8a5PeSCAxfnkhiuWqfmFJzJQt9w==}
+    engines: {node: '>=12.0.0'}
+    peerDependencies:
+      typescript: '*'
+      webpack: ^5.0.0
+    dependencies:
+      chalk: 4.1.2
+      enhanced-resolve: 5.15.0
+      micromatch: 4.0.5
+      semver: 7.5.4
+      typescript: 5.1.6
+      webpack: 5.88.2(webpack-cli@5.1.4)
     dev: true
 
   /ts-node@10.9.1(@types/node@20.4.2)(typescript@5.1.6):
