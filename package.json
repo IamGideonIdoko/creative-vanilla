@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "NODE_ENV=production node build/server/index.js",
-    "dev": "concurrently --kill-others \"pnpm dev:server\" \"pnpm dev:client\"",
-    "dev:server": "nodemon",
+    "dev": "nodemon",
     "dev:client": "webpack serve --progress --color --config webpack.config.dev.ts",
+    "build": "run-s build:*",
     "build:client": "NODE_ENV=production cross-env  webpack --progress --color --config webpack.config.prod.ts",
     "build:server": "NODE_ENV=production tsc --project tsconfig.server.json && tsc-alias",
     "preinstall": "npx only-allow pnpm",
