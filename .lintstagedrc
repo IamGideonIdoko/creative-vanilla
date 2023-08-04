@@ -1,4 +1,4 @@
 {
   "**/*.(js|ts)": "pnpm lint",
-  "**/*.pug": "prettier --write \"**/*.pug\"  "
+  "**/*.(css|scss|pug)": "prettier --write \"**/*.(css|scss|pug)\"  "
 }
