@@ -1,4 +1,4 @@
-import type { IServerConfig } from '@/server/interfaces';
+import type { IServerConfig } from '@/s/interfaces';
 import env from 'env-var';
 
 const NODE_ENV = env.get('NODE_ENV').required().default('development').asString();

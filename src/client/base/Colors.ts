@@ -1,5 +1,5 @@
 import GSAP from 'gsap';
-import type { TweenValue } from '@/client/interfaces/gsap.interface';
+import type { TweenValue } from '@/c/interfaces/gsap.interface';
 
 class Colors {
   public change({ backgroundColor, color }: Record<'backgroundColor' | 'color', TweenValue>) {

@@ -15,7 +15,7 @@ export default {
     // configure where webpack looks for modules
     modules: ['node_modules'],
     alias: {
-      '@/client': getClientWebpackPath(''),
+      '@/c': getClientWebpackPath(''),
     },
   },
   plugins: [

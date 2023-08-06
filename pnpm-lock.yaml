@@ -58,6 +58,9 @@ devDependencies:
   '@types/node':
     specifier: ^20.4.2
     version: 20.4.2
+  '@types/normalize-wheel':
+    specifier: ^1.0.1
+    version: 1.0.1
   '@types/ua-parser-js':
     specifier: ^0.7.36
     version: 0.7.36
@@ -961,6 +964,10 @@ packages:
 
   /@types/normalize-package-data@2.4.1:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
+    dev: true
+
+  /@types/normalize-wheel@1.0.1:
+    resolution: {integrity: sha512-3YBVyWfiwIGDcQY+2ZeT3LxyApYnV3PrysjIKeNkQtT9Q9eq2mcPPcqSCYR4v/FhYJ9xtZNhXMKNxCn6ukLsXQ==}
     dev: true
 
   /@types/parse-json@4.0.0:

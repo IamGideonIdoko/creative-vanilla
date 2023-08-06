@@ -1,8 +1,8 @@
 @font-face {
   font-family: $font-george-x;
   src:
-    url('@/client/fonts/george-x-regular.woff2') format('woff2'),
-    url('@/client/fonts/george-x-regular.woff') format('woff');
+    url('@/c/fonts/george-x-regular.woff2') format('woff2'),
+    url('@/c/fonts/george-x-regular.woff') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -11,8 +11,8 @@
 @font-face {
   font-family: $font-suisse-bp;
   src:
-    url('@/client/fonts/suisse-bp-regular.woff2') format('woff2'),
-    url('@/client/fonts/suisse-bp-regular.woff') format('woff');
+    url('@/c/fonts/suisse-bp-regular.woff2') format('woff2'),
+    url('@/c/fonts/suisse-bp-regular.woff') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -21,8 +21,8 @@
 @font-face {
   font-family: $font-suisse-bp;
   src:
-    url('@/client/fonts/suisse-bp-light.woff2') format('woff2'),
-    url('@/client/fonts/suisse-bp-light.woff') format('woff');
+    url('@/c/fonts/suisse-bp-light.woff2') format('woff2'),
+    url('@/c/fonts/suisse-bp-light.woff') format('woff');
   font-weight: 300;
   font-style: normal;
   font-display: swap;
@@ -31,8 +31,8 @@
 @font-face {
   font-family: $font-suisse-bp;
   src:
-    url('@/client/fonts/suisse-bp-ultra-light.woff2') format('woff2'),
-    url('@/client/fonts/suisse-bp-ultra-light.woff') format('woff');
+    url('@/c/fonts/suisse-bp-ultra-light.woff2') format('woff2'),
+    url('@/c/fonts/suisse-bp-ultra-light.woff') format('woff');
   font-weight: 200;
   font-style: normal;
   font-display: swap;

@@ -6,8 +6,8 @@ export function split({
   append = true,
 }: {
   element: HTMLElement;
-  expression: string;
-  append: boolean;
+  expression?: string;
+  append?: boolean;
 }) {
   const words = splitText(element.innerHTML.toString().trim(), expression);
 
@@ -45,7 +45,7 @@ export function split({
   return spans;
 }
 
-export function calculate(spans: HTMLSpanElement[]) {
+export function calculate(spans: HTMLSpanElement[] | NodeListOf<HTMLSpanElement>) {
   const lines: HTMLSpanElement[][] = [];
   let words: HTMLSpanElement[] = [];
 

@@ -1,4 +1,4 @@
-import type { Controller } from '@/server/interfaces';
+import type { Controller } from '@/s/interfaces';
 import { Router, type Request, type Response, type NextFunction } from 'express';
 
 /**
