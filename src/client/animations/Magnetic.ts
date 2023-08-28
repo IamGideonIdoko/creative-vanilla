@@ -5,7 +5,7 @@ export default class extends Animation<HTMLElement, { text?: HTMLSpanElement }> 
   private x: Record<'current' | 'target', number>;
   private y: Record<'current' | 'target', number>;
   // private height: number;
-  private frame: number | undefined;
+  private frame?: number;
 
   public constructor({ element }: { element: HTMLElement }) {
     super({

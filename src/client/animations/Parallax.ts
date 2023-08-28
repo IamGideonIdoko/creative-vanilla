@@ -8,7 +8,7 @@ export default class extends Animation<HTMLElement, { media?: HTMLImageElement }
   private parallax: number;
   private scale: number;
   private amount = 0;
-  private offset: ReturnType<typeof getOffset> | undefined;
+  private offset?: ReturnType<typeof getOffset>;
 
   public constructor({ element }: { element: HTMLElement }) {
     super({

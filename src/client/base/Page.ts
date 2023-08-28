@@ -38,7 +38,7 @@ export default class Page<
   CC extends { active: string; [x: string]: string } = { active: string },
 > {
   protected readonly transformPrefix = Prefix('transform') as 'transform';
-  protected classes: CC | undefined;
+  protected classes?: CC;
   protected element: HTMLElement | null;
   protected elements: Record<'wrapper' | keyof EE | keyof typeof DefaultPageElements, HTMLElement[]>;
   protected animations: Animation[] = [];

@@ -8,7 +8,7 @@ export default class extends Animation {
   private amount = 0;
   private parallax = 0;
   private direction: 'left' | 'right' = 'left';
-  private offset: ReturnType<typeof getOffset> | undefined;
+  private offset?: ReturnType<typeof getOffset>;
 
   public constructor({ element }: { element: HTMLElement }) {
     super({

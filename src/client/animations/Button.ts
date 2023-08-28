@@ -14,7 +14,7 @@ export default class extends Animation<
   }
 > {
   private timeline = GSAP.timeline({ paused: true });
-  private path: SVGPathElement | null | undefined;
+  private path?: SVGPathElement | null;
   private pathLength = 0;
   private pathValue = 0;
   public constructor({ element }: { element: HTMLElement }) {

@@ -2,7 +2,7 @@ import AutoBind from 'auto-bind';
 
 export default class {
   protected element: HTMLElement | null;
-  protected elements: Record<string, HTMLElement | null>;
+  protected elements: Record<string, HTMLElement[]>;
 
   public constructor({
     element,
@@ -21,9 +21,9 @@ export default class {
     this.elements = Object.fromEntries(
       Object.entries({ ...elements }).map(([key, child]) => {
         if (child instanceof window.HTMLElement) {
-          return [key, child];
+          return [key, [child]];
         } else {
-          return [key, document.querySelector(child)];
+          return [key, document.querySelectorAll(child)];
         }
       }),
     );

@@ -15,7 +15,7 @@ export default class Animation<
   protected element: E;
   protected elements: EE;
   protected target: HTMLElement;
-  private observer: IntersectionObserver | undefined;
+  private observer?: IntersectionObserver;
   protected readonly transformPrefix = Prefix('transform') as 'transform';
 
   constructor({ element, elements }: { element: E; elements?: EE }) {
