@@ -3,7 +3,7 @@ import Page from '@/c/base/Page';
 
 export default class extends Page<string, Record<'wrapper' | 'list' | 'items', string>> {
   // private title: Titles;
-  constructor() {
+  public constructor() {
     super({
       classes: {
         active: 'home--active',
@@ -35,13 +35,13 @@ export default class extends Page<string, Record<'wrapper' | 'list' | 'items', s
   /**
    * Animations.
    */
-  async show() {
+  public async show() {
     this.element!.classList.add(this.classes!.active);
 
     return super.show();
   }
 
-  async hide() {
+  public async hide() {
     this.element!.classList.remove(this.classes!.active);
 
     return super.hide();
@@ -50,7 +50,7 @@ export default class extends Page<string, Record<'wrapper' | 'list' | 'items', s
   /**
    * Events.
    */
-  onResize() {
+  public onResize() {
     super.onResize();
 
     // this.titles.onResize();
@@ -75,7 +75,7 @@ export default class extends Page<string, Record<'wrapper' | 'list' | 'items', s
   /**
    * Loop.
    */
-  update() {
+  public update() {
     super.update();
 
     // this.titles.update();
@@ -84,7 +84,7 @@ export default class extends Page<string, Record<'wrapper' | 'list' | 'items', s
   /**
    * Destroy.
    */
-  destroy() {
+  public destroy() {
     // super.destroy();
   }
 }

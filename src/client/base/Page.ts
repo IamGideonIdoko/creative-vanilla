@@ -39,7 +39,7 @@ export default class Page<
 > {
   protected readonly transformPrefix = Prefix('transform') as 'transform';
   protected classes?: CC;
-  protected element: HTMLElement | null;
+  public element: HTMLElement | null;
   protected elements: Record<'wrapper' | keyof EE | keyof typeof DefaultPageElements, HTMLElement[]>;
   protected animations: Animation[] = [];
   protected isVisible = false;

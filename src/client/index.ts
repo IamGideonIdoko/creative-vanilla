@@ -1,5 +1,18 @@
+import NormalizeWheel from 'normalize-wheel';
+import Navigation from './components/Navigation.ts';
+import Preloader from './components/Preloader';
+import Transition from './components/Transition';
+import Home from './pages/Home';
+import About from './pages/About';
+
 class Client {
   private pathname: string;
+  private navigation!: Navigation;
+  private preloader!: Preloader;
+  private transition!: Transition;
+  private page!: Home | About;
+  private pages!: { '/': Home; '/about': About };
+
   public constructor() {
     this.pathname = window.location.pathname;
 
@@ -20,11 +33,15 @@ class Client {
   }
 
   private createNavigation() {
-    //
+    this.navigation = new Navigation({
+      pathname: this.pathname,
+    });
   }
 
   private createPreloader() {
-    //
+    this.preloader = new Preloader();
+
+    // this.preloader.once('completed', this.onPreloaded.bind(this));
   }
 
   private createCanvas() {
@@ -32,55 +49,94 @@ class Client {
   }
 
   private createTransition() {
-    //
+    this.transition = new Transition();
   }
 
   private createPages() {
-    //
+    const home = new Home();
+    const about = new About();
+
+    this.pages = {
+      '/': home,
+      '/about': about,
+    };
+
+    this.page = this.pages[this.pathname as keyof typeof this.pages];
   }
 
   // EVENTS
   private onPreloaded() {
     this.onResize();
+
+    this.page.show();
   }
 
   private onPopState() {
-    //
+    this.onChange({
+      url: window.location.pathname,
+      push: false,
+    });
   }
 
-  // private async onChange({ url, push = true }: { url: string; push: boolean }) {
-  //   //
-  // }
+  private async onChange({ url, push = true }: { url: string; push?: boolean }) {
+    url = url.replace(window.location.origin, '');
+
+    const page = this.pages[url as keyof typeof this.pages];
+
+    await this.transition.show({
+      color: page.element!.getAttribute('data-color')!,
+    });
+
+    if (push) {
+      window.history.pushState({}, '', url);
+    }
+
+    this.pathname = window.location.pathname;
+
+    this.page.hide();
+
+    this.navigation.onChange(this.pathname);
+
+    this.page = page;
+
+    this.page.show();
+
+    this.onResize();
+
+    this.transition.hide();
+  }
 
   private onResize() {
-    //
+    this.page.onResize();
+
+    // window.requestAnimationFrame((_) => {
+    //   if (this.canvas?.onResize) {
+    //     this.canvas.onResize();
+    //   }
+    // });
   }
 
-  private onTouchDown() {
-    //
+  private onTouchDown(event: TouchEvent | MouseEvent) {
+    this.page.onTouchDown(event);
   }
 
-  private onTouchMove() {
-    //
+  private onTouchMove(event: TouchEvent | MouseEvent) {
+    this.page.onTouchMove(event);
   }
 
   private onTouchUp() {
-    //
+    this.page.onTouchUp();
   }
 
   private onWheel() {
-    //
+    const normalizedWheel = NormalizeWheel(event);
+    this.page.onWheel(normalizedWheel);
   }
 
   // LOOP
   private update() {
-    // if (this.page?.update) {
-    //   this.page.update();
-    // }
-    // if (this.canvas?.update) {
-    //   this.canvas.update(this.page.scroll);
-    // }
-    // this.frame = window.requestAnimationFrame(this.update.bind(this));
+    this.page.update();
+    window.requestAnimationFrame(this.update.bind(this));
   }
 
   // Listeners
@@ -112,9 +168,9 @@ class Client {
         link.onclick = (event) => {
           event.preventDefault();
 
-          // this.onChange({
-          //   url: link.href,
-          // });
+          this.onChange({
+            url: link.href,
+          });
         };
 
         // link.onmouseenter = (event) => this.onLinkMouseEnter(link);

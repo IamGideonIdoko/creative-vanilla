@@ -24,7 +24,7 @@ export default class extends Page {
     return super.show();
   }
 
-  async hide() {
+  public async hide() {
     if (!this.element || !this.classes) return;
     this.element.classList.remove(this.classes.active);
 
