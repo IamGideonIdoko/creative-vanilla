@@ -9,12 +9,12 @@ declare global {
   }
 }
 
-export default class Preloader extends Component {
+export default class extends Component {
   private titleSpans: NodeListOf<HTMLSpanElement>;
   private length: number;
   private animateIn?: ReturnType<typeof GSAP.timeline>;
   private animateOut?: ReturnType<typeof GSAP.timeline>;
-  constructor() {
+  public constructor() {
     super({
       element: '.preloader',
       elements: {
@@ -42,7 +42,7 @@ export default class Preloader extends Component {
     this.createLoader();
   }
 
-  createLoader() {
+  private createLoader() {
     this.animateIn = GSAP.timeline();
 
     this.animateIn.set(this.elements.title, {
@@ -91,7 +91,7 @@ export default class Preloader extends Component {
     });
   }
 
-  onAssetLoaded() {
+  public onAssetLoaded() {
     this.length += 1;
 
     const percent = this.length / window.ASSETS.length;
@@ -105,7 +105,7 @@ export default class Preloader extends Component {
     }
   }
 
-  onLoaded() {
+  public onLoaded() {
     return new Promise(() => {
       this.animateOut = GSAP.timeline({
         delay: 1,
@@ -161,7 +161,7 @@ export default class Preloader extends Component {
     });
   }
 
-  destroy() {
+  public destroy() {
     if (!this.element?.parentNode) return;
     this.element.parentNode.removeChild(this.element);
   }

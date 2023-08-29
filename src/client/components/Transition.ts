@@ -6,7 +6,7 @@ export default class {
   private progress: number;
   private color?: string;
   private widthSegments?: number;
-  constructor() {
+  public constructor() {
     this.element = document.createElement('canvas');
     this.element.className = 'transition';
     this.element.height = window.innerHeight * window.devicePixelRatio;
@@ -49,7 +49,7 @@ export default class {
     });
   }
 
-  onUpdate() {
+  public onUpdate() {
     if (!this.context) return;
     this.context.clearRect(0, 0, this.element.width, this.element.height);
     this.context.save();

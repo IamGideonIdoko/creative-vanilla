@@ -4,7 +4,7 @@ import Component from '@/c/base/Component';
 import { COLOR_BRIGHT_GRAY, COLOR_QUARTER_SPANISH_WHITE } from '@/c/utils/colors.util';
 
 export default class Navigation extends Component {
-  constructor({ pathname }: { pathname: string }) {
+  public constructor({ pathname }: { pathname: string }) {
     super({
       element: '.navigation',
       elements: {
@@ -22,7 +22,7 @@ export default class Navigation extends Component {
     this.onChange(pathname);
   }
 
-  onChange(pathname: string) {
+  public onChange(pathname: string) {
     if (pathname === '/about') {
       GSAP.set(this.element, {
         color: COLOR_BRIGHT_GRAY,
