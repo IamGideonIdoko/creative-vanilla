@@ -1,5 +1,5 @@
 import NormalizeWheel from 'normalize-wheel';
-import Navigation from './components/Navigation.ts';
+import Navigation from './components/Navigation';
 import Preloader from './components/Preloader';
 import Transition from './components/Transition';
 import Home from './pages/Home';

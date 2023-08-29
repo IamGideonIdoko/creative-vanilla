@@ -21,8 +21,7 @@
     },
     "outDir": "build/server",
     "noImplicitAny": true,
-    "typeRoots": ["node_modules/@types", "src/@types"],
-    "allowImportingTsExtensions": true
+    "typeRoots": ["node_modules/@types", "src/@types"]
   },
   "include": ["./*.ts", "./*.js", "./src/**/*.js", "./src/**/*.ts"],
   "exclude": ["node_modules", "src/client/public"],

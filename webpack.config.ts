@@ -17,6 +17,7 @@ export default {
     alias: {
       '@/c': getClientWebpackPath(''),
     },
+    extensions: ['.js', '.ts'],
   },
   plugins: [
     // Run TypeScript type checker on a separate process.
