@@ -9,7 +9,7 @@ declare global {
   }
 }
 
-export default class extends Component {
+export default class extends Component<string, Record<'title' | 'number' | 'numberText', string>> {
   private titleSpans: NodeListOf<HTMLSpanElement>;
   private length: number;
   private animateIn?: ReturnType<typeof GSAP.timeline>;
@@ -26,7 +26,7 @@ export default class extends Component {
 
     this.titleSpans = split({
       append: true,
-      element: this.elements.title[0],
+      element: this.elements!.title[0],
       expression: '<br>',
     });
 
@@ -45,7 +45,7 @@ export default class extends Component {
   private createLoader() {
     this.animateIn = GSAP.timeline();
 
-    this.animateIn.set(this.elements.title, {
+    this.animateIn.set(this.elements!.title, {
       autoAlpha: 1,
     });
 
@@ -96,8 +96,8 @@ export default class extends Component {
 
     const percent = this.length / window.ASSETS.length;
 
-    if (this.elements.numberText[0]) {
-      this.elements.numberText[0].innerHTML = `${Math.round(percent * 100)}%`;
+    if (this.elements!.numberText[0]) {
+      this.elements!.numberText[0].innerHTML = `${Math.round(percent * 100)}%`;
     }
 
     if (percent === 1) {
@@ -141,7 +141,7 @@ export default class extends Component {
       });
 
       this.animateOut.to(
-        this.elements.numberText[0],
+        this.elements!.numberText[0],
         {
           autoAlpha: 0,
           duration: 1,
