@@ -3,7 +3,7 @@ import Link from '@/c/animations/Link';
 import Component from '@/c/base/Component';
 import { COLOR_BRIGHT_GRAY, COLOR_QUARTER_SPANISH_WHITE } from '@/c/utils/colors.util';
 
-export default class Navigation extends Component {
+export default class Navigation extends Component<string, Record<'items' | 'links', string>> {
   public constructor({ pathname }: { pathname: string }) {
     super({
       element: '.navigation',
@@ -13,7 +13,7 @@ export default class Navigation extends Component {
       },
     });
 
-    this.elements.links.map((element) => {
+    this.elements!.links.map((element) => {
       return new Link({
         element,
       });
@@ -28,15 +28,15 @@ export default class Navigation extends Component {
         color: COLOR_BRIGHT_GRAY,
       });
 
-      GSAP.set(this.elements.items[0], { autoAlpha: 1 });
-      GSAP.set(this.elements.items[1], { autoAlpha: 0 });
+      GSAP.set(this.elements!.items[0], { autoAlpha: 1 });
+      GSAP.set(this.elements!.items[1], { autoAlpha: 0 });
     } else {
       GSAP.set(this.element, {
         color: COLOR_QUARTER_SPANISH_WHITE,
       });
 
-      GSAP.set(this.elements.items[0], { autoAlpha: 0 });
-      GSAP.set(this.elements.items[1], { autoAlpha: 1 });
+      GSAP.set(this.elements!.items[0], { autoAlpha: 0 });
+      GSAP.set(this.elements!.items[1], { autoAlpha: 1 });
     }
   }
 }
