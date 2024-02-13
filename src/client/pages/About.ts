@@ -1,32 +1,24 @@
 import Page from '@/c/base/Page';
 
-export default class extends Page {
+export default class extends Page<'parent'> {
   public constructor() {
     super({
-      classes: {
-        active: 'about--active',
-      },
-
-      element: '.about',
-      elements: {
-        wrapper: '.about__wrapper',
+      element: {
+        parent: '.about',
       },
     });
   }
 
-  /**
-   * Animations.
-   */
   public async show() {
-    if (!this.element || !this.classes) return;
-    this.element.classList.add(this.classes.active);
+    if (!this.element.parent) return;
+    this.element.parent.classList.add('active');
 
     return super.show();
   }
 
   public async hide() {
-    if (!this.element || !this.classes) return;
-    this.element.classList.remove(this.classes.active);
+    if (!this.element.parent) return;
+    this.element.parent.classList.remove('active');
 
     return super.hide();
   }

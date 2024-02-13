@@ -1,7 +1,7 @@
 import type { Controller } from '@/s/interfaces';
 import { Router, type Request, type Response, type NextFunction } from 'express';
 
-export class IndexController implements Controller {
+export class MainController implements Controller {
   // The base URL path for this controller
   public path = '/';
   // Express router for this controller
@@ -20,7 +20,7 @@ export class IndexController implements Controller {
     this.router.get(this.path, this.indexPage.bind(this));
   }
 
-  private indexPage(req: Request, res: Response, next: NextFunction) {
+  private indexPage(_: Request, res: Response, next: NextFunction) {
     try {
       return res.render('base');
     } catch (err) {

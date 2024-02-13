@@ -1,22 +1,18 @@
-import GSAP from 'gsap';
-import Link from '@/c/animations/Link';
+import gsap from 'gsap';
 import Component from '@/c/base/Component';
-import { COLOR_BRIGHT_GRAY, COLOR_QUARTER_SPANISH_WHITE } from '@/c/utils/colors.util';
+import { COLOR_BRIGHT_GRAY, COLOR_QUARTER_SPANISH_WHITE } from '@/c/utils/colors';
 
-export default class Navigation extends Component<string, Record<'items' | 'links', string>> {
+export const name: Record<never, string> = {
+  asdf: 'asdf',
+};
+
+export default class Navigation extends Component<'element', 'items' | 'links'> {
   public constructor({ pathname }: { pathname: string }) {
     super({
-      element: '.navigation',
       elements: {
         items: '.navigation__list__item',
         links: '.navigation__list__link',
       },
-    });
-
-    this.elements!.links.map((element) => {
-      return new Link({
-        element,
-      });
     });
 
     this.onChange(pathname);
@@ -24,19 +20,19 @@ export default class Navigation extends Component<string, Record<'items' | 'link
 
   public onChange(pathname: string) {
     if (pathname === '/about') {
-      GSAP.set(this.element, {
+      gsap.set(this.elements.items, {
         color: COLOR_BRIGHT_GRAY,
       });
 
-      GSAP.set(this.elements!.items[0], { autoAlpha: 1 });
-      GSAP.set(this.elements!.items[1], { autoAlpha: 0 });
+      gsap.set(this.elements.items[0], { autoAlpha: 1 });
+      gsap.set(this.elements.items[1], { autoAlpha: 0 });
     } else {
-      GSAP.set(this.element, {
+      gsap.set(this.element, {
         color: COLOR_QUARTER_SPANISH_WHITE,
       });
 
-      GSAP.set(this.elements!.items[0], { autoAlpha: 0 });
-      GSAP.set(this.elements!.items[1], { autoAlpha: 1 });
+      gsap.set(this.elements.items[0], { autoAlpha: 0 });
+      gsap.set(this.elements.items[1], { autoAlpha: 1 });
     }
   }
 }

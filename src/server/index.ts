@@ -11,7 +11,7 @@ import type { Server as HttpServer } from 'http';
 import helmet from 'helmet';
 import type { Controller } from './interfaces';
 import serverConfig from './config';
-import { IndexController, DefaultController } from './controllers';
+import { MainController, DefaultController } from './controllers';
 
 /**
  * Creates a new server instance
@@ -148,4 +148,4 @@ class Server {
 /**
  * Creates a new server instance
  */
-new Server([new IndexController(), new DefaultController()], serverConfig.env.port);
+new Server([new MainController(), new DefaultController()], serverConfig.env.port);

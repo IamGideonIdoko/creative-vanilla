@@ -151,9 +151,6 @@ devDependencies:
   postcss-loader:
     specifier: ^7.3.3
     version: 7.3.3(postcss@8.4.27)(webpack@5.88.2)
-  prefix:
-    specifier: ^1.0.0
-    version: 1.0.0
   prettier:
     specifier: ^3.0.0
     version: 3.0.0
@@ -4974,10 +4971,6 @@ packages:
       nanoid: 3.3.6
       picocolors: 1.0.0
       source-map-js: 1.0.2
-    dev: true
-
-  /prefix@1.0.0:
-    resolution: {integrity: sha512-KtGt8TV4nQkYgO6wJ5phkBGAECZW5cs5vQhqnz1LlxGGd8y4LwpW3Bq5pofULjdiMXACDCxisDUhwtFXb7vHfQ==}
     dev: true
 
   /prelude-ls@1.2.1:

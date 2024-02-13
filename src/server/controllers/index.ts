@@ -1,2 +1,2 @@
-export * from './index.controller';
-export * from './default.controller';
+export * from './main';
+export * from './default';

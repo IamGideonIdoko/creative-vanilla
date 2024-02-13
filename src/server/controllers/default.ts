@@ -26,7 +26,7 @@ export class DefaultController implements Controller {
     this.router.get(this.path, this.notFound.bind(this));
   }
 
-  private notFound(req: Request, res: Response, next: NextFunction) {
+  private notFound(_: Request, res: Response, next: NextFunction) {
     try {
       return res.render('pages/notfound');
     } catch (err) {

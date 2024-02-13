@@ -1,2 +1,2 @@
-export * from './controller.interface';
-export * from './config.interface';
+export * from './controller';
+export * from './config';
